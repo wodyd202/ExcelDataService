@@ -15,7 +15,7 @@ import com.ljy.excel.domain.ExcelDataReadMetaInfo;
 public class DefaultExcelHeaderValidator implements ExcelHeaderValidator {
 
 	private CellMargeChecker cellMargeCheck = new CellMargeChecker();
-	private ExcelObjectChecker excelObjectChecker = new DefaultExcelObjectChecker();
+	private ExcelObjectInfoGetter excelObjGetter = new ExcelObjectInfoGetter();
 
 	@Override
 	public void valid(Class<?> excelBindClassType, Sheet sheet, ExcelDataReadMetaInfo metaInfo) {
@@ -31,7 +31,7 @@ public class DefaultExcelHeaderValidator implements ExcelHeaderValidator {
 				throw new IllegalArgumentException("There is a duplicate excel header");
 			}
 		}
-		List<String> excelColumList = excelObjectChecker.getExcelColums(excelBindClassType).stream()
+		List<String> excelColumList = excelObjGetter.getExcelColums(excelBindClassType).stream()
 			.map(excelColum -> excelColum.name()).collect(Collectors.toList());
 		excelHeader.forEach(fileIntoExcelColum -> {
 			if (!excelColumList.contains(fileIntoExcelColum)) {

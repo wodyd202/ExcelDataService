@@ -3,6 +3,7 @@ package com.ljy.excel.util;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import com.ljy.excel.domain.ExcelDataReadMetaInfo;
+import com.ljy.excel.service.ExcelDataReader;
 
 public class DefaultExcelFormValidator implements ExcelFormValidator, RequiredObjectChecker {
 	private Class<?> excelBindClassType;
@@ -24,7 +25,8 @@ public class DefaultExcelFormValidator implements ExcelFormValidator, RequiredOb
 		this.excelHeaderValidator = excelHeaderValidator;
 	}
 
-	public DefaultExcelFormValidator(Class<?> excelBindClassType) {
-		this.excelBindClassType = excelBindClassType;
+	public DefaultExcelFormValidator(ExcelDataReader<?> excelDataReader) {
+		GenericInstanceGetter genericInstanceGetter = new GenericInstanceGetter();
+		this.excelBindClassType = genericInstanceGetter.getGenericInstanceType(excelDataReader.getClass());
 	}
 }

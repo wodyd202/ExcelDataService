@@ -20,7 +20,7 @@ public class ExcelReaderConfig {
 
 	@Bean
 	public ExcelFormValidator excelFormValidator() {
-		return new DefaultExcelFormValidator(TestMenu.class);
+		return new DefaultExcelFormValidator(excelDataReader());
 	}
 
 	@Bean

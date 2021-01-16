@@ -9,16 +9,13 @@ import org.apache.poi.ss.usermodel.Sheet;
 
 import com.ljy.excel.annotation.ExcelColum;
 import com.ljy.excel.domain.ExcelDataReadMetaInfo;
-import com.ljy.excel.util.DefaultExcelObjectChecker;
 import com.ljy.excel.util.ExcelColumDataBinder;
-import com.ljy.excel.util.ExcelObjectChecker;
 import com.ljy.excel.util.GenericInstanceGetter;
 import com.ljy.excel.util.RequiredObjectChecker;
 
 abstract public class AbstractExcelDataReader<T> implements RequiredObjectChecker, ExcelDataReader<T> {
 	abstract protected Collection<T> newCollectionInstance();
 
-	private ExcelObjectChecker excelObjectChecker = new DefaultExcelObjectChecker();
 	private ExcelColumDataBinder columDataBinder = new ExcelColumDataBinder();
 	private GenericInstanceGetter genericInstanceGetter = new GenericInstanceGetter();
 
@@ -30,7 +27,6 @@ abstract public class AbstractExcelDataReader<T> implements RequiredObjectChecke
 
 	@Override
 	public Collection<T> readData(Sheet sheet, ExcelDataReadMetaInfo metaInfo) {
-		checkIsNullObjects(excelObjectChecker);
 		Collection<T> collection = newCollectionInstance();
 		loopToExcelDataRowsAfterAddDataIntoCollection(sheet, collection, metaInfo);
 		return collection;
@@ -87,9 +83,5 @@ abstract public class AbstractExcelDataReader<T> implements RequiredObjectChecke
 				throw new IllegalArgumentException("[" + excelColum.name() + "] value is required");
 			}
 		}
-	}
-
-	public void setExcelObjectChecker(ExcelObjectChecker excelObjectChecker) {
-		this.excelObjectChecker = excelObjectChecker;
 	}
 }

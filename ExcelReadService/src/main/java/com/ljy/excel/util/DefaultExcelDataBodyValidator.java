@@ -12,11 +12,11 @@ import com.ljy.excel.domain.ExcelDataReadMetaInfo;
 public class DefaultExcelDataBodyValidator implements ExcelDataBodyValidator {
 
 	private CellMargeChecker cellMargeCheck = new CellMargeChecker();
-	private ExcelObjectChecker excelObjectChecker = new DefaultExcelObjectChecker();
+	private ExcelObjectInfoGetter excelObjGetter = new ExcelObjectInfoGetter();
 
 	@Override
 	public void valid(Class<?> excelBindClassType, Sheet sheet, ExcelDataReadMetaInfo metaInfo) {
-		List<ExcelColum> excelColumList = excelObjectChecker.getExcelColums(excelBindClassType);
+		List<ExcelColum> excelColumList = excelObjGetter.getExcelColums(excelBindClassType);
 		for (int i = metaInfo.getStartDataRowIdx(); i < metaInfo.getEndDataRowIdx(); i++) {
 			for (int j = metaInfo.getStartDataColIdx(); j < metaInfo.getEndDataColIdx(); j++) {
 				if (isEmptyEssentialCell(excelColumList, sheet, i, j, metaInfo)) {
