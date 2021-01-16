@@ -25,8 +25,12 @@ public class ExcelProcessController {
 	public ResponseEntity<Collection<BestGoods>> getExcelData(ExcelDataReadMetaInfoDTO metaInfoDTO, MultipartFile file)
 		throws IOException, InvalidFormatException {
 		FileInfo fileInfo = new FileInfo(file);
-		ExcelDataReadMetaInfo metaInfo = new ExcelDataReadMetaInfo(metaInfoDTO.getStartDataRow(), metaInfoDTO.getEndDataRow(),
-			metaInfoDTO.getStartDataCol(), metaInfoDTO.getEndDataCol());
+		ExcelDataReadMetaInfo metaInfo = new ExcelDataReadMetaInfo(
+			metaInfoDTO.getStartDataRow(),
+			metaInfoDTO.getEndDataRow(),
+			metaInfoDTO.getStartDataCol(),
+			metaInfoDTO.getEndDataCol()
+		);
 		Collection<BestGoods> testMenus = excelDataReadService.readData(fileInfo, metaInfo);
 		return ResponseEntity.ok(testMenus);
 	}

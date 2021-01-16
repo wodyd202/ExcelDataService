@@ -31,6 +31,8 @@ public class ExcelColumDataBinder {
 			} else {
 				if (isNumberType(field)) {
 					field.setInt(obj, (int) cell.getNumericCellValue());
+				} else if (isDoubleType(field)) {
+					field.setDouble(obj, cell.getNumericCellValue());
 				} else {
 					throw new IllegalArgumentException("[" + cell.getNumericCellValue() + "] value type miss");
 				}
@@ -61,6 +63,10 @@ public class ExcelColumDataBinder {
 
 	private boolean isNumberType(Field field) {
 		return field.getType().toString().toUpperCase().contains(SupportExcelType.INT.toString());
+	}
+
+	private boolean isDoubleType(Field field) {
+		return field.getType().toString().toUpperCase().contains(SupportExcelType.DOUBLE.toString());
 	}
 
 	private boolean isDateType(Field field) {

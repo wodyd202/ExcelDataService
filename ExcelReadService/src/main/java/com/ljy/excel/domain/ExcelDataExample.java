@@ -6,7 +6,7 @@ import com.ljy.excel.annotation.ExcelColum;
 import com.ljy.excel.annotation.ExcelDataObject;
 
 @ExcelDataObject
-public class TestMenu {
+public class ExcelDataExample {
 
 	@ExcelColum(name = "menu1")
 	private int menu1;

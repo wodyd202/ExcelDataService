@@ -3,7 +3,7 @@ package com.ljy.excel.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.ljy.excel.domain.TestMenu;
+import com.ljy.excel.domain.ExcelDataExample;
 import com.ljy.excel.service.ExcelDataReadService;
 import com.ljy.excel.service.ExcelDataReader;
 import com.ljy.excel.util.DefaultExcelFormValidator;
@@ -14,7 +14,7 @@ import com.ljy.excel.util.TestListExcelDataReader;
 public class ExcelReaderConfig {
 
 	@Bean
-	public ExcelDataReader<TestMenu> excelDataReader() {
+	public ExcelDataReader<ExcelDataExample> excelDataReader() {
 		return new TestListExcelDataReader();
 	}
 

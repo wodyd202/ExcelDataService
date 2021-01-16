@@ -12,7 +12,7 @@ import org.springframework.core.io.Resource;
 
 import com.ljy.excel.domain.ExcelDataReadMetaInfo;
 import com.ljy.excel.domain.FileInfo;
-import com.ljy.excel.domain.TestMenu;
+import com.ljy.excel.domain.ExcelDataExample;
 import com.ljy.excel.service.ExcelDataReader;
 import com.ljy.excel.service.ExcelFileReader;
 import com.ljy.excel.util.DefaultExcelHeaderValidator;
@@ -96,7 +96,7 @@ class ExcelReadServiceTest {
 		ExcelFileReader excelFileReader = getExcelFileReader(fileInfo);
 		Workbook workBook = excelFileReader.getWorkBook();
 
-		ExcelDataReader<TestMenu> excelDataReader = new TestListExcelDataReader();
+		ExcelDataReader<ExcelDataExample> excelDataReader = new TestListExcelDataReader();
 		excelDataReader.readData(excelFileReader.getWorkSheet(workBook, 0), excelDataReadMetaInfo);
 	}
 
@@ -108,7 +108,7 @@ class ExcelReadServiceTest {
 		Workbook workBook = excelFileReader.getWorkBook();
 
 		ExcelHeaderValidator excelHeaderValidator = new DefaultExcelHeaderValidator();
-		excelHeaderValidator.valid(TestMenu.class, excelFileReader.getWorkSheet(workBook, 0), excelDataReadMetaInfo);
+		excelHeaderValidator.valid(ExcelDataExample.class, excelFileReader.getWorkSheet(workBook, 0), excelDataReadMetaInfo);
 	}
 
 	private ExcelFileReader getExcelFileReader(FileInfo fileInfo) {
