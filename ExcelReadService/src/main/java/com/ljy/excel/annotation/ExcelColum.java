@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ExcelColum {
-	String name();
+	String value();
 
 	boolean isRequired() default false;
 }
